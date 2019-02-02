@@ -29,27 +29,27 @@ window.addEventListener('load', () => {
                 //  creting a shorthand variable to lessen the repetitive typing
                 const { temperature, summary, icon } = data.currently;
 
-                //  setting the data to the DOM elements
-                location.textContent = data.timezone;
-                temp.textContent = Math.floor(temperature);
-                description.textContent = summary;
-
-                //  invoking the function for setting the icon
-                setIcon(icon, document.querySelector('.icon'));
-
                 //  to toggle between Celsious and Fahrenheit on click
                 let celsious = (temperature - 32) * 5 / 9;
 
                 tempInfo.addEventListener('click', () => {
-                    if (celFar.textContent === 'C') {
-                        celFar.textContent = 'F';
-                        temp.textContent = Math.floor(temperature);
-                    }
-                    else {
+                    if (celFar.textContent === 'F') {
                         celFar.textContent = 'C';
                         temp.textContent = Math.floor(celsious);
                     }
+                    else {
+                        celFar.textContent = 'F';
+                        temp.textContent = Math.floor(temperature);
+                    }
                 });
+
+                //  setting the data to the DOM elements
+                location.textContent = data.timezone;
+                temp.textContent = Math.floor(celsious);
+                description.textContent = summary;
+
+                //  invoking the function for setting the icon
+                setIcon(icon, document.querySelector('.icon'));
 
             });
         });
